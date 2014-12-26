@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+</head>
+<body>
+	<div id="button"><button>New Grid</button></div>
+    <table></table>
+</body>
+
+<style type="text/css">
+.cell {
+    height: 20px;
+    background-color: white;
+    border: 1px solid black;
+    margin: 0;
+}
+
+table {
+    width: 50%;
+    margin-left: auto;
+    margin-right:auto;
+}
+
+button {
+	width: 100%;
+}
+
+#button {
+    width: 10%;
+    margin-left: auto;
+    margin-right:auto;
+    margin-bottom: 20px;
+}
+</style>
+
+<script type="text/javascript">
+var create_grid = function(number) {
+    for(var i = 0; i < number; i++) {
+        $('table').append("<tr id=\"" + i + "\">");
+        for(var j = 0; j < number; j++) {
+            $("#"+i).append("<td><div class=\"cell\"></div></td>");
+        }
+        $('table').append("</tr>");
+    }
+    $('.cell').hover(function(){
+        $(this).css({"background-color": "green"});
+    });
+}
+
+$(document).ready(function() {
+    create_grid(16);
+    $('button').click(function(){
+        $('table').empty();
+        var input = prompt("Enter the number of cells per row \
+                            and column");
+        create_grid(input);
+    });
+});
+</script>
